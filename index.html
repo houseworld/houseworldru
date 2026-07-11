@@ -509,40 +509,43 @@
         // ============================================================
         // ИНИЦИАЛИЗАЦИЯ ПРИ ЗАГРУЗКЕ
         // ============================================================
-        window.onload = () => {
-            // Проверяем токен в URL (после редиректа от Discord)
-            const fragment = new URLSearchParams(window.location.hash.slice(1));
-            const accessToken = fragment.get('access_token');
+  window.onload = () => {
+            // 1. Проверяем токен в URL (при первом входе)
+            const hash = window.location.hash.substring(1);
+            const params = new URLSearchParams(hash);
+            const accessToken = params.get('access_token');
 
             if (accessToken) {
                 localStorage.setItem('discord_token', accessToken);
+                // Очищаем URL, чтобы токен не светился в строке браузера
                 window.history.replaceState(null, null, window.location.pathname);
             }
 
+            // 2. Берем токен из хранилища
             const storedToken = localStorage.getItem('discord_token');
 
             if (storedToken) {
                 fetch('https://discord.com/api/users/@me', {
                     headers: { authorization: `Bearer ${storedToken}` }
                 })
-                .then(result => result.json())
+                .then(res => res.json())
                 .then(response => {
-                    if (response.message === '401: Unauthorized') {
+                    // Если токен протух или невалиден
+                    if (response.code === 0 || !response.id) {
                         localStorage.removeItem('discord_token');
-                        renderPage();
+                        currentUser = null;
                     } else {
                         discordUserData = response;
                         const { username, id, avatar } = response;
                         
-                        // Ищем или создаём пользователя в нашей базе
+                        // Ищем пользователя в БД или создаем нового
                         let user = Object.values(db.users).find(u => u.discordId === id);
                         if (!user) {
-                            // Новый пользователь
                             user = {
                                 id: 'user_' + id,
                                 username: username,
                                 discordId: id,
-                                avatar: avatar ? `https://cdn.discordapp.com/avatars/${id}/${avatar}.png` : null,
+                                avatar: avatar ? `https://cdn.discordapp.com/avatars/${id}/${avatar}.png` : 'https://cdn.discordapp.com/embed/avatars/0.png',
                                 role: 'user',
                                 verified: false,
                                 canPublish: false,
@@ -550,17 +553,19 @@
                             };
                             db.users[user.id] = user;
                             saveData(db);
-                        } else {
-                            // Обновляем данные если изменились
-                            user.username = username;
-                            user.avatar = avatar ? `https://cdn.discordapp.com/avatars/${id}/${avatar}.png` : null;
-                            saveData(db);
                         }
-                        
                         currentUser = user;
-                        renderPage();
                     }
+                    renderPage();
                 })
+                .catch(err => {
+                    console.error('Auth error:', err);
+                    renderPage();
+                });
+            } else {
+                renderPage();
+            }
+        };
                 .catch(err => {
                     console.error('Discord API error:', err);
                     renderPage();
