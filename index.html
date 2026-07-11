@@ -11,31 +11,34 @@
             --dark: #0b1120;
             --glass: rgba(15, 23, 42, 0.7);
             --discord: #5865F2;
+            --green: #16a34a;
+            --yellow: #eab308;
+            --purple: #7c3aed;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Montserrat', sans-serif; background: var(--dark); color: #e2e8f0; scroll-behavior: smooth; overflow-x: hidden; }
 
-        /* Эффектный Header с размытием */
+        /* Header */
         header { 
             position: fixed; width: 100%; top: 0; 
-            background: rgba(15, 23, 42, 0.8); backdrop-filter: blur(10px); 
-            padding: 20px 50px; display: flex; align-items: center; justify-content: space-between; 
-            border-bottom: 1px solid rgba(37, 99, 235, 0.3); z-index: 1000; 
+            background: rgba(15, 23, 42, 0.85); backdrop-filter: blur(15px); 
+            padding: 15px 40px; display: flex; align-items: center; justify-content: space-between; 
+            border-bottom: 1px solid rgba(37, 99, 235, 0.4); z-index: 1000; flex-wrap: wrap; gap: 15px;
         }
 
-        .logo { font-family: 'Press Start 2P', cursive; font-size: 1.5rem; cursor: pointer; transition: 0.6s; }
+        .logo { font-family: 'Press Start 2P', cursive; font-size: 1.3rem; cursor: pointer; transition: 0.6s; }
         .logo:hover { transform: rotate(360deg) scale(1.1); }
 
-        .nav-links { display: flex; align-items: center; }
+        .nav-links { display: flex; align-items: center; flex-wrap: wrap; gap: 20px; }
         .nav-links a { 
-            color: white; margin-left: 30px; text-decoration: none; font-weight: bold; font-size: 0.9rem; 
+            color: white; text-decoration: none; font-weight: bold; font-size: 0.85rem; 
             text-transform: uppercase; letter-spacing: 1px; transition: 0.3s; 
         }
         .nav-links a:hover { color: var(--blue); text-shadow: 0 0 10px var(--blue); }
 
-        /* --- СТИЛИ ДЛЯ АВТОРИЗАЦИИ DISCORD --- */
-        .auth-container { margin-left: 40px; }
+        /* Discord Auth */
+        .auth-container { display: flex; align-items: center; gap: 15px; }
         
         .discord-btn {
             background: var(--discord);
@@ -51,9 +54,9 @@
         .discord-btn:hover { background: #4752C4; box-shadow: 0 5px 20px rgba(88, 101, 242, 0.6); transform: scale(1.05); }
 
         .user-profile {
-            display: none; /* Скрыто по умолчанию */
+            display: none;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
             background: rgba(255, 255, 255, 0.05);
             padding: 5px 15px 5px 5px;
             border-radius: 50px;
@@ -61,13 +64,28 @@
         }
         
         .user-profile img {
-            width: 35px; height: 35px;
+            width: 32px; height: 32px;
             border-radius: 50%;
             border: 2px solid var(--discord);
         }
         
-        .user-profile span { font-weight: bold; font-size: 0.9rem; }
+        .user-profile span { font-weight: bold; font-size: 0.85rem; }
         
+        .verified-badge {
+            display: inline-block;
+            background: var(--blue);
+            color: white;
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            text-align: center;
+            font-size: 11px;
+            line-height: 18px;
+            margin-left: 4px;
+            cursor: default;
+            font-weight: bold;
+        }
+
         .logout-btn {
             color: var(--red);
             font-size: 0.8rem;
@@ -76,32 +94,236 @@
             transition: 0.3s;
         }
         .logout-btn:hover { color: #ff4d4d; text-shadow: 0 0 5px var(--red); }
-        /* -------------------------------------- */
 
-        /* Hero секция с параллаксом */
+        /* Hero */
         .hero { 
             min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; 
-            background: linear-gradient(rgba(11, 17, 32, 0.6), rgba(11, 17, 32, 0.6)), url('https://i.pinimg.com/736x/b3/11/e4/b311e4a8de82124d075b9de97b727aeb.jpg') center/cover fixed; 
+            background: linear-gradient(rgba(11, 17, 32, 0.7), rgba(11, 17, 32, 0.7)), url('https://i.pinimg.com/736x/b3/11/e4/b311e4a8de82124d075b9de97b727aeb.jpg') center/cover fixed; 
             text-align: center; 
         }
         h1 { font-family: 'Orbitron', sans-serif; font-size: 4rem; margin-bottom: 20px; letter-spacing: 5px; }
         
-        section { padding: 120px 20px; max-width: 900px; margin: auto; }
-        h2 { font-family: 'Orbitron', sans-serif; font-size: 2.5rem; color: var(--blue); margin-bottom: 40px; text-align: center; }
+        section { padding: 80px 20px; max-width: 1000px; margin: auto; }
+        h2 { font-family: 'Orbitron', sans-serif; font-size: 2.5rem; color: var(--blue); margin-bottom: 30px; text-align: center; }
 
-        /* Профессиональные карточки */
         .card { 
-            background: var(--glass); padding: 40px; border-radius: 20px; 
+            background: var(--glass); padding: 30px; border-radius: 20px; 
             border: 1px solid rgba(37, 99, 235, 0.2); 
             transition: 0.4s; backdrop-filter: blur(5px);
+            margin-bottom: 20px;
         }
-        .card:hover { transform: translateY(-10px); border-color: var(--blue); box-shadow: 0 20px 30px rgba(0,0,0,0.5); }
+        .card:hover { transform: translateY(-5px); border-color: var(--blue); box-shadow: 0 20px 30px rgba(0,0,0,0.5); }
 
-        /* Кнопка и фидбек */
-        .chat-btn { position: fixed; bottom: 30px; right: 30px; background: var(--blue); padding: 18px 30px; border-radius: 50px; cursor: pointer; z-index: 1000; box-shadow: 0 5px 20px rgba(37, 99, 235, 0.4); font-weight: bold; transition: 0.3s; }
-        .chat-btn:hover { background: #1d4ed8; transform: scale(1.05); }
+        /* Forum Styles */
+        .forum-container { margin-top: 120px; }
+        
+        .announcement {
+            background: rgba(37, 99, 235, 0.1);
+            border-left: 4px solid var(--blue);
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+        }
+        .announcement-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .announcement-author {
+            font-weight: bold;
+            color: var(--blue);
+        }
+        .announcement-date {
+            font-size: 0.8rem;
+            color: #94a3b8;
+        }
+        .announcement-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+        .announcement-content {
+            color: #cbd5e1;
+            line-height: 1.6;
+        }
 
-        #feedback-box { display: none; position: fixed; bottom: 100px; right: 30px; background: #1e293b; padding: 25px; border-radius: 20px; border: 1px solid var(--blue); width: 320px; z-index: 999; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .comments-section {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        .comment {
+            background: rgba(0,0,0,0.2);
+            padding: 10px;
+            margin-bottom: 8px;
+            border-radius: 6px;
+            display: flex;
+            gap: 10px;
+            align-items: flex-start;
+        }
+        .comment img {
+            width: 28px; height: 28px;
+            border-radius: 50%;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        .comment-body {
+            flex: 1;
+        }
+        .comment-author {
+            font-weight: bold;
+            font-size: 0.85rem;
+        }
+        .comment-text {
+            font-size: 0.9rem;
+            color: #cbd5e1;
+            margin-top: 3px;
+        }
+        .comment-actions {
+            font-size: 0.7rem;
+            color: #94a3b8;
+            margin-top: 5px;
+            display: flex;
+            gap: 15px;
+        }
+        .comment-actions span {
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .comment-actions span:hover {
+            color: var(--red);
+        }
+
+        .post-btn {
+            background: var(--green);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            margin-top: 15px;
+            transition: 0.3s;
+        }
+        .post-btn:hover {
+            background: #15803d;
+            transform: scale(1.03);
+        }
+
+        .ban-btn {
+            background: var(--red);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: 0.3s;
+        }
+        .ban-btn:hover { background: #b91c1c; }
+
+        .complaint-btn {
+            background: var(--yellow);
+            color: black;
+            padding: 8px 16px;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer;
+            font-size: 0.8rem;
+            transition: 0.3s;
+            font-weight: bold;
+        }
+        .complaint-btn:hover { background: #ca8a04; }
+
+        /* Admin Panel Styles */
+        .admin-panel {
+            background: #1e293b;
+            padding: 25px;
+            border-radius: 12px;
+            border: 1px solid var(--purple);
+            margin-top: 20px;
+        }
+        .admin-panel h3 {
+            color: var(--purple);
+            margin-bottom: 15px;
+        }
+        .user-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+        .user-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .badge-btn {
+            background: var(--blue);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+            font-size: 0.75rem;
+            margin-left: 8px;
+        }
+        .badge-btn.remove {
+            background: var(--red);
+        }
+        .badge-btn:disabled {
+            background: #4b5563;
+            cursor: not-allowed;
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.8);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+        .modal.active {
+            display: flex;
+        }
+        .modal-content {
+            background: #1e293b;
+            padding: 30px;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 500px;
+            border: 1px solid var(--purple);
+        }
+        .modal-content input, .modal-content select, .modal-content textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            border-radius: 6px;
+            border: 1px solid rgba(255,255,255,0.2);
+            background: rgba(0,0,0,0.3);
+            color: white;
+        }
+        .modal-content button {
+            margin-top: 10px;
+            padding: 10px 20px;
+            border-radius: 6px;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .close-btn {
+            background: transparent;
+            color: white;
+            font-size: 1.5rem;
+            float: right;
+            cursor: pointer;
+            border: none;
+        }
     </style>
 </head>
 <body>
@@ -110,120 +332,643 @@
         <div class="logo"><span style="color: var(--red);">H</span><span style="color: #fff;">W</span></div>
         <div class="nav-links">
             <a href="#home">Главная</a>
+            <a href="#forum">Форум</a>
+            <a href="#admin" id="admin-link" style="display:none;">Админ-панель</a>
             <a href="#about">О проекте</a>
-            <a href="#founders">Команда</a>
-            <a href="vip.html">Магазин</a>
             
             <div class="auth-container">
                 <a href="#" id="login-btn" class="discord-btn">Войти через Discord</a>
-                
                 <div id="user-profile" class="user-profile">
                     <img id="user-avatar" src="" alt="Avatar">
                     <span id="user-name">User</span>
+                    <span id="verified-icon" class="verified-badge" style="display:none;">✓</span>
                     <div id="logout-btn" class="logout-btn">Выйти</div>
                 </div>
             </div>
         </div>
     </header>
 
+    <!-- Hero Section -->
     <section id="home" class="hero">
         <h1><span style="color: var(--red);">HOUSE</span>WORLD</h1>
         <p style="font-size: 1.5rem; letter-spacing: 2px;">Лучший RP-мир, рожденный в легендах.</p>
     </section>
 
-    <section id="about">
-        <h2>О ПРОЕКТЕ</h2>
-        <div class="card">
-            <p style="line-height: 1.8;">HouseWorld — это не просто сервер, это цифровая экосистема, зародившаяся в 2021 году в закрытых сетях Xbox Live. Мы прошли путь от первых VPN-настроек до масштабного RP-проекта. Сегодня HouseWorld — это место, где экономика регулируется спросом, а каждый житель — архитектор будущего.</p>
+    <!-- Forum Section -->
+    <section id="forum" class="forum-container">
+        <h2>ФОРУМ ОБЪЯВЛЕНИЙ</h2>
+        <div id="announcements-list"></div>
+        
+        <!-- Кнопка создания объявления (только для авторизованных с правами) -->
+        <button id="create-announcement-btn" class="post-btn" style="display:none;">Создать объявление</button>
+        
+        <!-- Форма создания объявления -->
+        <div id="create-announcement-form" style="display:none; margin-top: 20px;" class="card">
+            <h4>Новое объявление</h4>
+            <input type="text" id="announcement-title" placeholder="Заголовок" style="width:100%; padding:10px; margin:8px 0; border-radius:6px; border:1px solid rgba(255,255,255,0.2); background:rgba(0,0,0,0.3); color:white;">
+            <textarea id="announcement-content" placeholder="Текст объявления" style="width:100%; padding:10px; margin:8px 0; border-radius:6px; border:1px solid rgba(255,255,255,0.2); background:rgba(0,0,0,0.3); color:white; height:120px;"></textarea>
+            <button onclick="createAnnouncement()" class="post-btn">Опубликовать</button>
+            <button onclick="document.getElementById('create-announcement-form').style.display='none'" style="background:transparent; color:white; border:1px solid white; padding:10px 20px; border-radius:6px; cursor:pointer; margin-left:10px;">Отмена</button>
         </div>
     </section>
 
-    <section id="founders">
-        <h2>КОМАНДА</h2>
-        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
-            <div class="card">
-                <h3>Kawasakii</h3>
-                <p>Lead Developer & Architect</p>
-                <a href="https://t.me/KM_Kawasaki" style="color: var(--blue); text-decoration: none; margin-top: 10px; display: block;">Написать в Telegram →</a>
-            </div>
-            <div class="card">
-                <h3>Samuri0</h3>
-                <p>Community & RP Manager</p>
-            </div>
+    <!-- Admin Panel -->
+    <section id="admin" style="display:none;">
+        <h2>АДМИН-ПАНЕЛЬ</h2>
+        
+        <!-- Управление правами на публикацию -->
+        <div class="admin-panel">
+            <h3>👥 Права на публикацию объявлений</h3>
+            <div id="publish-rights-list"></div>
+        </div>
+
+        <!-- Управление галочками -->
+        <div class="admin-panel" style="margin-top: 20px;">
+            <h3>✅ Управление верификацией (галочки)</h3>
+            <div id="verification-list"></div>
+        </div>
+
+        <!-- Жалобы -->
+        <div class="admin-panel" style="margin-top: 20px;">
+            <h3>🚨 Жалобы на пользователей</h3>
+            <div id="complaints-list"></div>
+        </div>
+
+        <!-- Назначение замов -->
+        <div class="admin-panel" style="margin-top: 20px;">
+            <h3>👑 Назначение заместителей</h3>
+            <div id="deputies-list"></div>
         </div>
     </section>
 
-    <div class="chat-btn" onclick="document.getElementById('feedback-box').style.display = 'block'">Техподдержка</div>
-    <div id="feedback-box">
-        <h4 style="margin-bottom: 15px;">Обратная связь</h4>
-        <input type="text" placeholder="Ваш ник" style="width: 100%; padding: 10px; margin-bottom: 10px; border-radius: 5px; border: none;">
-        <textarea placeholder="Ваш вопрос" style="width: 100%; padding: 10px; margin-bottom: 10px; border-radius: 5px; border: none; height: 80px;"></textarea>
-        <button onclick="alert('Отправлено!'); document.getElementById('feedback-box').style.display = 'none'" style="width: 100%; padding: 10px; background: var(--red); color: white; border: none; border-radius: 5px; cursor: pointer;">Отправить</button>
+    <!-- Модальное окно жалобы -->
+    <div id="complaint-modal" class="modal">
+        <div class="modal-content">
+            <button class="close-btn" onclick="document.getElementById('complaint-modal').classList.remove('active')">✕</button>
+            <h3>Пожаловаться на пользователя</h3>
+            <input type="hidden" id="complaint-target-id">
+            <p>На кого: <strong id="complaint-target-name"></strong></p>
+            <select id="complaint-reason">
+                <option value="spam">Спам</option>
+                <option value="insult">Оскорбление</option>
+                <option value="fraud">Мошенничество</option>
+                <option value="other">Другое</option>
+            </select>
+            <textarea id="complaint-description" placeholder="Опишите нарушение..." style="height:100px;"></textarea>
+            <button onclick="submitComplaint()" class="post-btn" style="width:100%;">Отправить жалобу</button>
+        </div>
     </div>
 
     <script>
-        // === ВАЖНО: ВСТАВЬ СЮДА СВОЙ CLIENT ID ===
-        const CLIENT_ID = '1525454553422630973';
+        // ============================================================
+        // ИНИЦИАЛИЗАЦИЯ ДАННЫХ (ИМИТАЦИЯ БАЗЫ ДАННЫХ)
+        // ============================================================
         
-        // Автоматически берем текущую ссылку сайта для редиректа
-        const REDIRECT_URI = encodeURIComponent("https://houseworld.github.io/houseworldru/");
+        // Загружаем данные из localStorage или создаём начальные
+        function loadData() {
+            const data = localStorage.getItem('houseworld_data');
+            if (data) return JSON.parse(data);
+            
+            // Начальная структура
+            const initialData = {
+                users: {
+                    // Создатель (неудаляемый)
+                    'admin_creator': {
+                        id: 'admin_creator',
+                        username: 'Kawasakii',
+                        discordId: '0',
+                        avatar: null,
+                        role: 'creator', // creator, deputy, admin, moderator, publisher, user
+                        verified: true,
+                        canPublish: true,
+                        bannedUntil: null
+                    }
+                },
+                announcements: [
+                    {
+                        id: 'a1',
+                        authorId: 'admin_creator',
+                        title: 'Добро пожаловать на HouseWorld!',
+                        content: 'Это официальный форум сервера. Здесь будут публиковаться важные объявления от администрации. Следите за обновлениями!',
+                        date: new Date().toISOString(),
+                        comments: []
+                    }
+                ],
+                complaints: [],
+                logs: []
+            };
+            
+            saveData(initialData);
+            return initialData;
+        }
 
+        function saveData(data) {
+            localStorage.setItem('houseworld_data', JSON.stringify(data));
+        }
+
+        let db = loadData();
+        let currentUser = null; // Текущий авторизованный пользователь
+
+        // ============================================================
+        // АВТОРИЗАЦИЯ DISCORD (УПРОЩЁННАЯ ДЕМО-ВЕРСИЯ)
+        // ============================================================
+        
         const loginBtn = document.getElementById('login-btn');
         const userProfile = document.getElementById('user-profile');
         const userName = document.getElementById('user-name');
         const userAvatar = document.getElementById('user-avatar');
-        const logoutBtn = document.getElementById('logout-btn');
+        const verifiedIcon = document.getElementById('verified-icon');
+        const logoutBtnEl = document.getElementById('logout-btn');
+        const adminLink = document.getElementById('admin-link');
+        const adminSection = document.getElementById('admin');
+        const createAnnouncementBtn = document.getElementById('create-announcement-btn');
+        const createAnnouncementForm = document.getElementById('create-announcement-form');
 
-        // Генерируем ссылку для авторизации
-        const oauthUrl = `https://discord.com/api/oauth2/authorize?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=token&scope=identify`;
-        loginBtn.setAttribute('href', oauthUrl);
+        // Демо-логин (без реального Discord API)
+        loginBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            // Симулируем вход как создатель
+            demoLogin('admin_creator');
+        });
 
-        // Функция проверки токена при загрузке
-        window.onload = () => {
-            // Ищем токен в URL (после редиректа от Discord)
-            const fragment = new URLSearchParams(window.location.hash.slice(1));
-            const [accessToken, tokenType] = [fragment.get('access_token'), fragment.get('token_type')];
-
-            if (accessToken) {
-                // Если токен в URL есть, сохраняем его и чистим URL
-                localStorage.setItem('discord_token', accessToken);
-                window.history.replaceState(null, null, window.location.pathname);
+        function demoLogin(userId) {
+            const user = db.users[userId];
+            if (!user) return;
+            
+            currentUser = user;
+            loginBtn.style.display = 'none';
+            userProfile.style.display = 'flex';
+            userName.textContent = user.username;
+            userAvatar.src = user.avatar || 'https://cdn.discordapp.com/embed/avatars/0.png';
+            
+            // Показываем галочку если есть
+            if (user.verified) {
+                verifiedIcon.style.display = 'inline-block';
+            } else {
+                verifiedIcon.style.display = 'none';
             }
-
-            const storedToken = localStorage.getItem('discord_token');
-
-            if (storedToken) {
-                // Если токен есть, запрашиваем данные юзера
-                fetch('https://discord.com/api/users/@me', {
-                    headers: { authorization: `Bearer ${storedToken}` }
-                })
-                .then(result => result.json())
-                .then(response => {
-                    if (response.message === '401: Unauthorized') {
-                        // Токен протух
-                        localStorage.removeItem('discord_token');
-                    } else {
-                        // Успешный вход: меняем интерфейс
-                        const { username, id, avatar } = response;
-                        loginBtn.style.display = 'none';
-                        userProfile.style.display = 'flex';
-                        userName.innerText = username;
-                        // Формируем ссылку на аватарку
-                        userAvatar.src = avatar 
-                            ? `https://cdn.discordapp.com/avatars/${id}/${avatar}.png` 
-                            : 'https://cdn.discordapp.com/embed/avatars/0.png'; // Дефолтная ава
-                    }
-                })
-                .catch(console.error);
+            
+            // Показываем админ-панель для создателя, зама, админа
+            if (['creator', 'deputy', 'admin'].includes(user.role)) {
+                adminLink.style.display = 'inline';
+                adminSection.style.display = 'block';
             }
-        };
+            
+            // Показываем кнопку создания объявления если есть права
+            if (user.canPublish || ['creator', 'deputy', 'admin'].includes(user.role)) {
+                createAnnouncementBtn.style.display = 'inline-block';
+            }
+            
+            // Обновляем весь UI
+            renderAnnouncements();
+            renderAdminPanel();
+        }
 
-        // Логика выхода
-        logoutBtn.addEventListener('click', () => {
-            localStorage.removeItem('discord_token');
+        logoutBtnEl.addEventListener('click', () => {
+            currentUser = null;
             userProfile.style.display = 'none';
             loginBtn.style.display = 'flex';
+            adminLink.style.display = 'none';
+            adminSection.style.display = 'none';
+            createAnnouncementBtn.style.display = 'none';
+            createAnnouncementForm.style.display = 'none';
+            renderAnnouncements();
         });
+
+        // ============================================================
+        // ФОРУМ: ОТОБРАЖЕНИЕ ОБЪЯВЛЕНИЙ
+        // ============================================================
+        
+        function renderAnnouncements() {
+            const container = document.getElementById('announcements-list');
+            container.innerHTML = '';
+            
+            db.announcements.slice().reverse().forEach(ann => {
+                const author = db.users[ann.authorId] || { username: 'Неизвестный', verified: false };
+                const card = document.createElement('div');
+                card.className = 'announcement';
+                card.innerHTML = `
+                    <div class="announcement-header">
+                        <span class="announcement-author">
+                            ${author.username}
+                            ${author.verified ? '<span class="verified-badge">✓</span>' : ''}
+                        </span>
+                        <span class="announcement-date">${new Date(ann.date).toLocaleDateString('ru-RU')}</span>
+                    </div>
+                    <div class="announcement-title">${ann.title}</div>
+                    <div class="announcement-content">${ann.content}</div>
+                    <div class="comments-section">
+                        <strong style="font-size:0.85rem;">Комментарии (${ann.comments.length})</strong>
+                        ${ann.comments.map(c => {
+                            const cAuthor = db.users[c.authorId] || { username: 'Неизвестный', verified: false };
+                            return `
+                                <div class="comment">
+                                    <img src="${cAuthor.avatar || 'https://cdn.discordapp.com/embed/avatars/0.png'}" alt="avatar">
+                                    <div class="comment-body">
+                                        <span class="comment-author">
+                                            ${cAuthor.username}
+                                            ${cAuthor.verified ? '<span class="verified-badge">✓</span>' : ''}
+                                        </span>
+                                        <div class="comment-text">${c.text}</div>
+                                        <div class="comment-actions">
+                                            <span onclick="openComplaint('${c.authorId}', '${cAuthor.username}')">⚠️ Пожаловаться</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            `;
+                        }).join('')}
+                        ${currentUser ? `
+                            <div style="display:flex; gap:10px; margin-top:10px;">
+                                <input type="text" id="comment-input-${ann.id}" placeholder="Написать комментарий..." style="flex:1; padding:8px; border-radius:6px; border:1px solid rgba(255,255,255,0.2); background:rgba(0,0,0,0.3); color:white;">
+                                <button onclick="addComment('${ann.id}')" class="post-btn" style="margin-top:0;">Отправить</button>
+                            </div>
+                        ` : '<p style="font-size:0.8rem; color:#94a3b8;">Войдите, чтобы оставлять комментарии</p>'}
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+
+        // Создание объявления
+        createAnnouncementBtn.addEventListener('click', () => {
+            createAnnouncementForm.style.display = 'block';
+        });
+
+        function createAnnouncement() {
+            if (!currentUser) return alert('Вы не авторизованы');
+            if (!currentUser.canPublish && !['creator', 'deputy', 'admin'].includes(currentUser.role)) {
+                return alert('У вас нет прав на публикацию объявлений');
+            }
+            
+            const title = document.getElementById('announcement-title').value.trim();
+            const content = document.getElementById('announcement-content').value.trim();
+            
+            if (!title || !content) return alert('Заполните все поля');
+            
+            const newAnn = {
+                id: 'ann_' + Date.now(),
+                authorId: currentUser.id,
+                title,
+                content,
+                date: new Date().toISOString(),
+                comments: []
+            };
+            
+            db.announcements.push(newAnn);
+            saveData(db);
+            
+            document.getElementById('announcement-title').value = '';
+            document.getElementById('announcement-content').value = '';
+            createAnnouncementForm.style.display = 'none';
+            renderAnnouncements();
+            addLog(currentUser.id, 'create_announcement', `Создал объявление: ${title}`);
+        }
+
+        // Добавление комментария
+        function addComment(annId) {
+            if (!currentUser) return alert('Вы не авторизованы');
+            
+            // Проверка бана
+            if (currentUser.bannedUntil && new Date(currentUser.bannedUntil) > new Date()) {
+                return alert('Вы забанены до ' + new Date(currentUser.bannedUntil).toLocaleDateString('ru-RU'));
+            }
+            
+            const input = document.getElementById('comment-input-' + annId);
+            const text = input.value.trim();
+            if (!text) return;
+            
+            const ann = db.announcements.find(a => a.id === annId);
+            if (!ann) return;
+            
+            ann.comments.push({
+                id: 'comm_' + Date.now(),
+                authorId: currentUser.id,
+                text,
+                date: new Date().toISOString()
+            });
+            
+            saveData(db);
+            renderAnnouncements();
+            addLog(currentUser.id, 'add_comment', `Добавил комментарий к объявлению ${annId}`);
+        }
+
+        // ============================================================
+        // СИСТЕМА ЖАЛОБ
+        // ============================================================
+        
+        function openComplaint(userId, username) {
+            document.getElementById('complaint-target-id').value = userId;
+            document.getElementById('complaint-target-name').textContent = username;
+            document.getElementById('complaint-modal').classList.add('active');
+        }
+
+        function submitComplaint() {
+            if (!currentUser) return alert('Вы не авторизованы');
+            
+            const targetId = document.getElementById('complaint-target-id').value;
+            const reason = document.getElementById('complaint-reason').value;
+            const description = document.getElementById('complaint-description').value.trim();
+            
+            if (!description) return alert('Опишите нарушение');
+            
+            const complaint = {
+                id: 'comp_' + Date.now(),
+                fromUserId: currentUser.id,
+                toUserId: targetId,
+                reason,
+                description,
+                date: new Date().toISOString(),
+                status: 'new' // new, reviewed, rejected
+            };
+            
+            db.complaints.push(complaint);
+            saveData(db);
+            
+            document.getElementById('complaint-modal').classList.remove('active');
+            document.getElementById('complaint-description').value = '';
+            alert('Жалоба отправлена');
+            addLog(currentUser.id, 'submit_complaint', `Пожаловался на ${targetId}`);
+            
+            // Проверка на авто-бан (3+ рассмотренных жалобы)
+            checkAutoBan(targetId);
+        }
+
+        function checkAutoBan(userId) {
+            const reviewedComplaints = db.complaints.filter(c => c.toUserId === userId && c.status === 'reviewed');
+            if (reviewedComplaints.length >= 3) {
+                const user = db.users[userId];
+                if (user && user.role !== 'creator') { // Создателя не баним
+                    const banUntil = new Date();
+                    banUntil.setDate(banUntil.getDate() + 7);
+                    user.bannedUntil = banUntil.toISOString();
+                    saveData(db);
+                    addLog('system', 'auto_ban', `Автоматический бан пользователя ${user.username} на 7 дней (3+ жалоб)`);
+                    alert(`Пользователь ${user.username} автоматически забанен на 7 дней из-за 3+ подтверждённых жалоб`);
+                }
+            }
+        }
+
+        // ============================================================
+        // АДМИН-ПАНЕЛЬ
+        // ============================================================
+        
+        function renderAdminPanel() {
+            if (!currentUser || !['creator', 'deputy', 'admin'].includes(currentUser.role)) return;
+            
+            renderPublishRights();
+            renderVerification();
+            renderComplaints();
+            renderDeputies();
+        }
+
+        // Права на публикацию
+        function renderPublishRights() {
+            const container = document.getElementById('publish-rights-list');
+            container.innerHTML = '';
+            
+            Object.values(db.users).forEach(user => {
+                const row = document.createElement('div');
+                row.className = 'user-row';
+                row.innerHTML = `
+                    <div class="user-info">
+                        <span>${user.username} ${user.verified ? '✓' : ''}</span>
+                        <span style="color:#94a3b8; font-size:0.8rem;">(${user.role})</span>
+                    </div>
+                    <button onclick="togglePublishRight('${user.id}')" class="badge-btn ${user.canPublish ? 'remove' : ''}">
+                        ${user.canPublish ? 'Забрать права' : 'Выдать права'}
+                    </button>
+                `;
+                container.appendChild(row);
+            });
+        }
+
+        function togglePublishRight(userId) {
+            if (!['creator', 'admin'].includes(currentUser.role)) {
+                return alert('Только создатель и администратор могут выдавать права на публикацию');
+            }
+            
+            const user = db.users[userId];
+            if (!user) return;
+            
+            user.canPublish = !user.canPublish;
+            saveData(db);
+            renderAdminPanel();
+            addLog(currentUser.id, 'toggle_publish', `${user.canPublish ? 'Выдал' : 'Забрал'} права на публикацию для ${user.username}`);
+        }
+
+        // Верификация (галочки)
+        function renderVerification() {
+            const container = document.getElementById('verification-list');
+            container.innerHTML = '';
+            
+            Object.values(db.users).forEach(user => {
+                const row = document.createElement('div');
+                row.className = 'user-row';
+                
+                let canToggle = false;
+                let disabledReason = '';
+                
+                if (currentUser.role === 'creator') {
+                    canToggle = true; // Создатель может менять галочку всем
+                } else if (currentUser.role === 'deputy' && user.role !== 'creator') {
+                    canToggle = true; // Зам может менять всем кроме создателя
+                } else if (currentUser.role === 'deputy' && user.role === 'creator') {
+                    disabledReason = 'Нельзя менять галочку создателя';
+                } else {
+                    disabledReason = 'Недостаточно прав';
+                }
+                
+                row.innerHTML = `
+                    <div class="user-info">
+                        <span>${user.username} ${user.verified ? '✓' : ''}</span>
+                        <span style="color:#94a3b8; font-size:0.8rem;">(${user.role})</span>
+                    </div>
+                    <button onclick="toggleVerification('${user.id}')" class="badge-btn ${user.verified ? 'remove' : ''}" 
+                            ${!canToggle ? 'disabled' : ''} title="${disabledReason}">
+                        ${user.verified ? 'Убрать галочку' : 'Выдать галочку'}
+                    </button>
+                `;
+                container.appendChild(row);
+            });
+        }
+
+        function toggleVerification(userId) {
+            const user = db.users[userId];
+            if (!user) return;
+            
+            // Проверка прав
+            if (currentUser.role === 'creator') {
+                // Создатель может всё
+            } else if (currentUser.role === 'deputy' && user.role !== 'creator') {
+                // Зам может менять всем кроме создателя
+            } else {
+                return alert('У вас недостаточно прав');
+            }
+            
+            user.verified = !user.verified;
+            saveData(db);
+            renderAdminPanel();
+            renderAnnouncements();
+            
+            // Обновляем свою галочку если это мы
+            if (userId === currentUser.id) {
+                verifiedIcon.style.display = user.verified ? 'inline-block' : 'none';
+            }
+            
+            addLog(currentUser.id, 'toggle_verification', `${user.verified ? 'Выдал' : 'Убрал'} галочку для ${user.username}`);
+        }
+
+        // Жалобы в админке
+        function renderComplaints() {
+            const container = document.getElementById('complaints-list');
+            container.innerHTML = '';
+            
+            if (db.complaints.length === 0) {
+                container.innerHTML = '<p style="color:#94a3b8;">Жалоб нет</p>';
+                return;
+            }
+            
+            db.complaints.forEach(comp => {
+                const fromUser = db.users[comp.fromUserId] || { username: 'Неизвестный' };
+                const toUser = db.users[comp.toUserId] || { username: 'Неизвестный' };
+                
+                const compEl = document.createElement('div');
+                compEl.style.cssText = 'background:rgba(0,0,0,0.2); padding:15px; margin-bottom:10px; border-radius:8px;';
+                compEl.innerHTML = `
+                    <div style="display:flex; justify-content:space-between; align-items:center;">
+                        <div>
+                            <strong>От:</strong> ${fromUser.username} <strong>→ На:</strong> ${toUser.username}
+                            <br><strong>Причина:</strong> ${comp.reason} | <strong>Статус:</strong> ${comp.status}
+                            <br><small>${comp.description}</small>
+                            <br><small style="color:#94a3b8;">${new Date(comp.date).toLocaleDateString('ru-RU')}</small>
+                        </div>
+                        <div>
+                            ${comp.status === 'new' ? `
+                                <button onclick="updateComplaintStatus('${comp.id}', 'reviewed')" class="badge-btn">Подтвердить</button>
+                                <button onclick="updateComplaintStatus('${comp.id}', 'rejected')" class="badge-btn remove">Отклонить</button>
+                            ` : ''}
+                        </div>
+                    </div>
+                `;
+                container.appendChild(compEl);
+            });
+        }
+
+        function updateComplaintStatus(compId, status) {
+            if (!['creator', 'deputy', 'admin', 'moderator'].includes(currentUser.role)) {
+                return alert('Недостаточно прав');
+            }
+            
+            const comp = db.complaints.find(c => c.id === compId);
+            if (!comp) return;
+            
+            comp.status = status;
+            saveData(db);
+            renderAdminPanel();
+            addLog(currentUser.id, 'update_complaint', `Изменил статус жалобы ${compId} на ${status}`);
+            
+            // Проверка авто-бана если подтвердили
+            if (status === 'reviewed') {
+                checkAutoBan(comp.toUserId);
+            }
+        }
+
+        // Заместители
+        function renderDeputies() {
+            const container = document.getElementById('deputies-list');
+            container.innerHTML = '';
+            
+            if (currentUser.role !== 'creator') {
+                container.innerHTML = '<p style="color:#94a3b8;">Только создатель может назначать заместителей</p>';
+                return;
+            }
+            
+            Object.values(db.users).forEach(user => {
+                if (user.role === 'creator') return; // Создателя не показываем
+                
+                const row = document.createElement('div');
+                row.className = 'user-row';
+                row.innerHTML = `
+                    <div class="user-info">
+                        <span>${user.username} ${user.verified ? '✓' : ''}</span>
+                        <span style="color:#94a3b8; font-size:0.8rem;">(${user.role})</span>
+                    </div>
+                    <button onclick="toggleDeputy('${user.id}')" class="badge-btn ${user.role === 'deputy' ? 'remove' : ''}">
+                        ${user.role === 'deputy' ? 'Снять зама' : 'Назначить замом'}
+                    </button>
+                `;
+                container.appendChild(row);
+            });
+        }
+
+        function toggleDeputy(userId) {
+            if (currentUser.role !== 'creator') {
+                return alert('Только создатель может назначать заместителей');
+            }
+            
+            const user = db.users[userId];
+            if (!user) return;
+            
+            if (user.role === 'deputy') {
+                user.role = 'user';
+            } else {
+                user.role = 'deputy';
+            }
+            
+            saveData(db);
+            renderAdminPanel();
+            addLog(currentUser.id, 'toggle_deputy', `${user.role === 'deputy' ? 'Назначил' : 'Снял'} заместителя ${user.username}`);
+        }
+
+        // ============================================================
+        // ЛОГИРОВАНИЕ
+        // ============================================================
+        
+        function addLog(userId, action, details) {
+            db.logs.push({
+                id: 'log_' + Date.now(),
+                userId,
+                action,
+                details,
+                timestamp: new Date().toISOString()
+            });
+            saveData(db);
+        }
+
+        // ============================================================
+        // ИНИЦИАЛИЗАЦИЯ
+        // ============================================================
+        
+        renderAnnouncements();
+        
+        // Демо: добавляем тестовых пользователей для проверки
+        if (!db.users['user_demo1']) {
+            db.users['user_demo1'] = {
+                id: 'user_demo1',
+                username: 'TestPlayer',
+                discordId: '1',
+                avatar: null,
+                role: 'user',
+                verified: false,
+                canPublish: false,
+                bannedUntil: null
+            };
+            db.users['user_demo2'] = {
+                id: 'user_demo2',
+                username: 'ModerBot',
+                discordId: '2',
+                avatar: null,
+                role: 'moderator',
+                verified: true,
+                canPublish: true,
+                bannedUntil: null
+            };
+            saveData(db);
+        }
+        
+        console.log('HouseWorld Forum v2.0 - Все системы активированы');
+        console.log('Роли: creator (Kawasakii), deputy, admin, moderator, publisher, user');
+        console.log('Для теста: логиньтесь как создатель (кнопка Discord)');
     </script>
 </body>
 </html>
